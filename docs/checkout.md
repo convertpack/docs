@@ -121,7 +121,7 @@ Veja abaixo as variáveis disponíveis:
 			title: 'Aproveite e compre esses produtos!'
 		},
 
-		payer: {
+		customer: {
 			name: 'John Doe',
 			name_input_disabled: true,
 			email: 'johndoe@gmail.com',
@@ -171,4 +171,5 @@ Veja abaixo as variáveis disponíveis:
         - `neighborhood`: Bairro.
         - `city`: Cidade. 
         - `state`: Estado.
-        
+
+Os dados declarados são validados internamente antes de serem exibidos ao usuário, evitando que informações quebrados sejam exibidas e atrapalhem o fluxo de compra.
