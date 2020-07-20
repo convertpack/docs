@@ -19,16 +19,17 @@
     logo: 'https://convertpack.io/email-assets/logo-name-380w.png',
     themeColor: '#266eff',
     auto2top   : true,
+    homepage   : 'intro.md',
+    loadSidebar: '_sidebar.md',
     maxLevel   : 3,
     subMaxLevel: 3,
     themeable: {
       readyTransition : true, // default
       responsiveTables: true  // default
-    }
+    },
   }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/docsify@4.11.4/lib/docsify.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/docsify@4.11.4/lib/plugins/search.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2.1.0/dist/docsify-copy-code.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0.8.1/dist/js/docsify-themeable.min.js"></script>
 
@@ -42,6 +43,7 @@
   :root {
     --theme-color: #266eff;
     --base-font-family: "Karmilla", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --heading-h1-font-weight: bold;
   }
 
   .app-name .app-name-link {
@@ -53,6 +55,9 @@
     vertical-align: bottom;
   }
 
+  .github-corner {
+    display: none;
+  }
 </style>
 </body>
 </html>
