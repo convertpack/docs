@@ -113,7 +113,9 @@ Veja abaixo as variáveis disponíveis:
 <script>
 	window.CONVERTPACK_CHECKOUT_OPTIONS = {
 		mode: 'inline',
+
 		element_id: 'convertpack_checkout_inline',
+        products: ['ABCDEFG:1'],
 		
 		logo_url: 'https://i.imgur.com/vbP9b3v.png',
 
@@ -150,6 +152,7 @@ Veja abaixo as variáveis disponíveis:
 - `mode`: Altera o modo de abertura do Checkout. Pode ser `modal` (padrão, abre o Checkout em janela modal) ou `inline` (Checkout aberto automaticamente na página).
 
 - `element_id`: Somente para `mode: inline`. ID do elemento onde o Checkout será aberto. Por padrão buscamos o elemento com ID `convertpack_checkout_inline`.
+- `products`: Somente para `mode: inline`. _Array_ com IDs e quantidades dos produtos que deverão ser automaticamente colocados no Checkout. Formato de cada item da Array: `['{product_id}:{quantity}']`. Se o usuário clicar em algum link de compra na sua página os produtos serão substituídos.
 
 - `logo_url`: Somente para `mode: modal`. Mostra o logotipo da sua loja no topo do Checkout. A imagem será exibida com altura de 25px e largura automática, dessa forma a imagem deve ter **pelo menos** 25px de altura e até 200px de largura. O tamanho **recomendado** é: até 400px de largura e exatamente 50px de altura, pensando em dispositivos com tela Retina.
 
