@@ -57,7 +57,7 @@ Abaixo a lista completa de variáveis disponíveis.
 --cpk_ch_submit_button_box_shadow_focus: inset 0 1px 0 0 #1bbb5b, inset 0 2px 0 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 0 #18a550, 0 10px 7px -7px rgba(27, 187, 91, 0.2), 0 0 0 3px rgba(27, 187, 91, 0.3);
 
 /* Form and layout blocks */
---cpk_ch_main_block_box_shadow_mobile: 0 3px 4px 0 rgba(0, 0, 0, .05);
+--cpk_ch_main_block_box_shadow_mobile: 0 2px 3px 0 rgba(0, 0, 0, 0.05);
 --cpk_ch_main_block_box_shadow_desktop: 0 5px 15px -5px rgba(0, 0, 0, .1);
 
 /* Form title */
@@ -84,8 +84,8 @@ Abaixo a lista completa de variáveis disponíveis.
 --cpk_ch_order_bump_current_price_color: var(--cpk_ch_positive);
 --cpk_ch_order_bump_old_price_color: var(--cpk_ch_negative);
 --cpk_ch_order_bump_border_radius: var(--cpk_ch_general_border_radius);
---cpk_ch_order_bump_tooltip_bg: var(--cpk_ch_positive);
---cpk_ch_order_bump_tooltip_color: var(--cpk_ch_positive_inverted);
+--cpk_ch_order_bump_tooltip_bg: #dcfbdd;
+--cpk_ch_order_bump_tooltip_color: #3aa264;
 
 /* Trust bar ("Safe purchase") */
 --cpk_ch_trust_bar_bg: var(--cpk_ch_positive);
@@ -117,7 +117,11 @@ Veja abaixo as variáveis disponíveis:
 		element_id: 'convertpack_checkout_inline',
         products: ['ABCDEFG:1'],
 		
-		logo_url: 'https://i.imgur.com/vbP9b3v.png',
+		header: {
+            title: 'Finalizar pedido',
+            logo: 'https://loja.com.br/logotipo.png',
+            banner: 'https://loja.com.br/destaque.png',
+        },
 
 		order_bump: {
 			title: 'Aproveite e compre esses produtos!'
@@ -151,13 +155,19 @@ Veja abaixo as variáveis disponíveis:
 
 - `mode`: Altera o modo de abertura do Checkout. Pode ser `modal` (padrão, abre o Checkout em janela modal) ou `inline` (Checkout aberto automaticamente na página).
 
+
 - `element_id`: Somente para `mode: inline`. ID do elemento onde o Checkout será aberto. Por padrão buscamos o elemento com ID `convertpack_checkout_inline`.
 - `products`: Somente para `mode: inline`. _Array_ com IDs e quantidades dos produtos que deverão ser automaticamente colocados no Checkout. Formato de cada item da Array: `['{product_id}:{quantity}']`. Se o usuário clicar em algum link de compra na sua página os produtos serão substituídos.
 
-- `logo_url`: Somente para `mode: modal`. Mostra o logotipo da sua loja no topo do Checkout. A imagem será exibida com altura de 25px e largura automática, dessa forma a imagem deve ter **pelo menos** 25px de altura e até 200px de largura. O tamanho **recomendado** é: até 400px de largura e exatamente 50px de altura, pensando em dispositivos com tela Retina.
 
+- `header`: 
+    - `title`: Somente para `mode: modal`. Altera o título do cabeçalho. Padrão: "Finalizar pedido".
+    - `logo`: Somente para `mode: modal`. Mostra o logotipo da sua loja no topo do Checkout. A imagem será exibida com altura de 25px e largura automática, dessa forma a imagem deve ter **pelo menos** 25px de altura e até 200px de largura. O tamanho **recomendado** é: até 400px de largura e exatamente 50px de altura, pensando em dispositivos com tela Retina.
+    - `banner`: Somente para `mode: modal`.
+    
 -  `order_bump`: Opções para a seção Order bump
     - `title`: Altera o título da seção de Order bump. Padrão: "COMPRE JUNTO!"
+    
     
 - `customer`: Define dados padrões para o cliente
     - `name`: Preenche o nome do comprador
@@ -174,5 +184,6 @@ Veja abaixo as variáveis disponíveis:
         - `neighborhood`: Bairro.
         - `city`: Cidade. 
         - `state`: Estado.
+
 
 Os dados declarados são validados internamente antes de serem exibidos ao usuário, evitando que informações quebrados sejam exibidas e atrapalhem o fluxo de compra.
