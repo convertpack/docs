@@ -71,7 +71,7 @@ Abaixo a lista completa de variáveis disponíveis.
 --cpk_ch_form_step_bg: #f4f4f4;
 --cpk_ch_form_step_color: #999;
 --cpk_ch_form_step_box_shadow: none;
---cpk_ch_form_step_border_radius: 0 var(--cpk_ch_elements_border_radius) var(--cpk_ch_elements_border_radius) 0;
+--cpk_ch_form_step_border_radius: var(--cpk_ch_general_border_radius);
 
 /* Tooltip */
 --cpk_ch_tooltip_bg: var(--cpk_ch_primary);
@@ -84,8 +84,8 @@ Abaixo a lista completa de variáveis disponíveis.
 --cpk_ch_order_bump_current_price_color: var(--cpk_ch_positive);
 --cpk_ch_order_bump_old_price_color: var(--cpk_ch_negative);
 --cpk_ch_order_bump_border_radius: var(--cpk_ch_general_border_radius);
---cpk_ch_order_bump_tooltip_bg: #dcfbdd;
---cpk_ch_order_bump_tooltip_color: #3aa264;
+--cpk_ch_order_bump_tooltip_bg: var(--cpk_ch_primary);
+--cpk_ch_order_bump_tooltip_color: var(--cpk_ch_primary_inverted);
 
 /* Trust bar ("Safe purchase") */
 --cpk_ch_trust_bar_bg: var(--cpk_ch_positive);
