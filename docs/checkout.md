@@ -19,7 +19,7 @@ Abaixo a lista completa de variáveis disponíveis.
 --cpk_ch_color: #313131;
 --cpk_ch_general_border_radius: 4px;
 
-/* Text inputs */
+/* Inputs */
 --cpk_ch_input_border_radius: 3px;
 --cpk_ch_input_label_color: #555;
 
@@ -37,6 +37,9 @@ Abaixo a lista completa de variáveis disponíveis.
 --cpk_ch_negative_low_opacity: rgba(250,0,0,0.1);
 --cpk_ch_alert: #f5a227;
 --cpk_ch_alert_inverted: #421709;
+
+/* Buttons */
+--cpk_ch_button_border_radius: 5px;
 
 /* Primary color button */
 --cpk_ch_primary_button_bg: var(--cpk_ch_primary);
