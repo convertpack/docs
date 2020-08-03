@@ -206,7 +206,7 @@ cart: [
 ]
 ```
 
-#### `purchase`
+#### purchase
 
 Disparado quando o usuário finaliza a compra e o status é `paid` (pago) ou
 `waiting` (aguardando).
