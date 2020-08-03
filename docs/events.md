@@ -1,8 +1,8 @@
 # Events (API)
 
 O Convertpack oferece uma API de eventos Javascript, permitindo que você capture dados
-a medida que os eventos acontecem ou execute suas próprias funções quando o usuário
-realiza determinadas ações.
+a medida que os eventos aconteçam ou execute suas próprias funções quando o usuário
+realizar determinadas ações.
 
 ## Como usar
 
@@ -22,13 +22,15 @@ Para isso, usaremos a função `convertpack_events.on()`, que precisa de 3 argum
 - `event`: _String:_ nome do evento que você deseja acompanhar
 - `callback`: _Function:_ função que será executada quando o evento for acionado
 
-Essa função deve ser chamada **após** o código anteriormente carregado.
+Por enquanto somente a ferramenta **Checkout** dispara eventos. Veja abaixo exemplos
+reais de uso.
 
-Abaixo alguns exemplos práticos de como o código deve ficar em sua página:
 
 ### Checkout
 
-#### Usuário adicionou produto ao carrinho
+Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
+
+##### Usuário adicionou produto ao carrinho
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
@@ -39,7 +41,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página:
 </script>
 ```
 
-#### Usuário iniciou formulário de pagamento
+##### Usuário iniciou formulário de pagamento
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
@@ -50,7 +52,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página:
 </script>
 ```
 
-#### Usuário realizou uma compra
+##### Usuário realizou uma compra
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
@@ -61,7 +63,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página:
 </script>
 ```
 
-## Usos avançados frequentes
+#### Usos avançados frequentes
 
 Além dos usos exemplificados acima, algumas funções são muito solicitadas.
 Veja abaixo algumas delas.
@@ -98,6 +100,7 @@ Exemplo para compra realizada:
             items: data.transaction.products,
             shipping: data.shipping.amount
         });
+
     })
 </script>
 ```
@@ -109,6 +112,10 @@ Novamente, lembre-se de **remover** os dados do Facebook Pixel e Google Analytic
 no painel do Convertpack, senão estaremos enviando os dados duas vezes.
 
 ```html
+<!--
+   Coloque aqui seu código de integração
+   do Facebook Pixel e Google Analytics
+-->
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
     convertpack_events.on('checkout', 'purchase', (data) => {
@@ -117,7 +124,7 @@ no painel do Convertpack, senão estaremos enviando os dados duas vezes.
         let purchase_amount = data.transaction.total_amount;
 
         // Se o método de pagamento for boleto,
-        // envie para Facebook e Google Analytics somente 40% do valor total
+        // envia para Facebook e Google Analytics somente 40% do valor total
         if (data.transaction.method === "boleto") {
             purchase_amount = data.transaction.total_amount * 0.4;
         }
@@ -137,14 +144,90 @@ no painel do Convertpack, senão estaremos enviando os dados duas vezes.
             items: data.transaction.products,
             shipping: data.shipping.amount
         });
+
     })
 </script>
 ```
 
 ## Ferramentas e eventos disponíveis
 
-Por enquanto somente a ferramenta **Checkout** dispara eventos. São eles:
+### Checkout
 
-- `add_to_cart`: usuário adicionou um ou mais produtos ao carrinho
-- `initiate_checkout`: usuário iniciou o checkout
-- `purchase`: usuário finalizou a compra (status "pago" ou "aguardando")
+- `add_to_cart`
+- `initiate_checkout`
+- `purchase`
+
+Todos os eventos retornam dados (`data`), que incluem:
+
+- `tool`: _String_: ferramenta que disparou o evento ("checkout")
+- `event`: _String_: evento disparado ("add_to_cart")
+- `triggered_at`: _Date_: data que o evento foi disparado
+
+Além disso, cada evento também fornece dados adicionais sobre si. Vej abaixo.
+
+#### `add_to_cart`
+
+Disparado quando o usuário adiciona um ou mais produtos ao carrinho.
+
+Retorna dados adicionais:
+
+- `cart`: _Array_: produtos no carrinho. Cada item da _Array_ é um objeto
+
+```javascript
+cart: [
+    {
+        short_id: "1YAJp53",
+        quantity: "1"
+    }
+]
+```
+
+#### `initiate_checkout`
+
+Disparado quando o usuário inicia o formulário de pagamento.
+
+Retorna dados adicionais:
+
+- `cart`: _Array_: produtos no carrinho. Cada item da _Array_ é um objeto
+
+```javascript
+cart: [
+    {
+        short_id: "1YAJp53",
+        quantity: "1"
+    }
+]
+```
+
+#### `purchase`
+
+Disparado quando o usuário finaliza a compra e o status é `paid` (pago) ou
+`waiting` (aguardando).
+
+Retorna dados adicionais:
+
+- `transaction`: _Object_: dados da transação
+
+```javascript
+transaction: {
+    id: "CPK-12345678",
+    status: "paid",
+    method: "credit_card",
+    total_amount: 10.00,
+    currency: "BRL",
+    products: [
+        {
+            name: "Mochila do Convertpack",
+            quantity: 1,
+            id: "1YAJp53",
+            price: 10.00
+        }
+    ],
+    gateway: {
+        name: "pagarme"
+    },
+    shipping: {
+        amount: 0
+    }
+}
+```
