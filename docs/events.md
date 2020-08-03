@@ -18,9 +18,9 @@ acompanhar e o que deseja fazer quando o evento for acionado.
 
 Para isso, usaremos a função `convertpack_events.on()`, que precisa de 3 argumentos:
 
-- `tool`: _String:_ nome da ferramenta que executará o evento
-- `event`: _String:_ nome do evento que você deseja acompanhar
-- `callback`: _Function:_ função que será executada quando o evento for acionado
+- `tool` _String:_ nome da ferramenta que executará o evento
+- `event` _String:_ nome do evento que você deseja acompanhar
+- `callback` _Function:_ função que será executada quando o evento for acionado
 
 Por enquanto somente a ferramenta **Checkout** dispara eventos. Veja abaixo exemplos
 reais de uso.
@@ -30,7 +30,8 @@ reais de uso.
 
 Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 
-##### Usuário adicionou produto ao carrinho
+**Usuário adicionou produto ao carrinho** 
+
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
@@ -41,7 +42,8 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 </script>
 ```
 
-##### Usuário iniciou formulário de pagamento
+** Usuário iniciou formulário de pagamento **
+
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
@@ -52,7 +54,8 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 </script>
 ```
 
-##### Usuário realizou uma compra
+** Usuário realizou uma compra **
+
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
@@ -63,7 +66,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 </script>
 ```
 
-#### Usos avançados frequentes
+### Usos avançados frequentes
 
 Além dos usos exemplificados acima, algumas funções são muito solicitadas.
 Veja abaixo algumas delas.
@@ -78,6 +81,10 @@ pelo Convertpack Events.
 Exemplo para compra realizada:
 
 ```html
+<!--
+   Coloque aqui seu código de integração
+   do Facebook Pixel e Google Analytics
+-->
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
     convertpack_events.on('checkout', 'purchase', (data) => {
@@ -159,19 +166,19 @@ no painel do Convertpack, senão estaremos enviando os dados duas vezes.
 
 Todos os eventos retornam dados (`data`), que incluem:
 
-- `tool`: _String_: ferramenta que disparou o evento ("checkout")
-- `event`: _String_: evento disparado ("add_to_cart")
-- `triggered_at`: _Date_: data que o evento foi disparado
+- `tool` _String:_ ferramenta que disparou o evento ("checkout")
+- `event` _String:_ evento disparado ("add_to_cart")
+- `triggered_at` _Date:_ data que o evento foi disparado
 
 Além disso, cada evento também fornece dados adicionais sobre si. Vej abaixo.
 
-#### `add_to_cart`
+#### add_to_cart
 
 Disparado quando o usuário adiciona um ou mais produtos ao carrinho.
 
 Retorna dados adicionais:
 
-- `cart`: _Array_: produtos no carrinho. Cada item da _Array_ é um objeto
+- `cart` _Array:_ produtos no carrinho. Cada item da _Array_ é um objeto
 
 ```javascript
 cart: [
@@ -182,13 +189,13 @@ cart: [
 ]
 ```
 
-#### `initiate_checkout`
+#### initiate_checkout
 
 Disparado quando o usuário inicia o formulário de pagamento.
 
 Retorna dados adicionais:
 
-- `cart`: _Array_: produtos no carrinho. Cada item da _Array_ é um objeto
+- `cart` _Array:_ produtos no carrinho. Cada item da _Array_ é um objeto
 
 ```javascript
 cart: [
@@ -206,7 +213,7 @@ Disparado quando o usuário finaliza a compra e o status é `paid` (pago) ou
 
 Retorna dados adicionais:
 
-- `transaction`: _Object_: dados da transação
+- `transaction` _Object:_ dados da transação
 
 ```javascript
 transaction: {
@@ -229,5 +236,17 @@ transaction: {
     shipping: {
         amount: 0
     }
+}
+```
+
+Se o método de pagamento for **boleto**, também retornará:
+
+- `boleto` _Object:_ dados do boleto bancários gerado
+
+```javascript
+boleto: {
+    barcode: "000000000000000000000000000000000",
+    date_of_expiration: "2020-08-01 10:00:00",
+    url: "https://boleto.com.br/123..."
 }
 ```
