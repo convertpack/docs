@@ -1,5 +1,6 @@
 - [Introdução](/)
 - [Checkout](checkout)
+- [Events (API)](events)
 
 
 <br/>
