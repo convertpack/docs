@@ -42,7 +42,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 </script>
 ```
 
-** Usuário iniciou formulário de pagamento **
+**Usuário iniciou formulário de pagamento**
 
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
@@ -54,7 +54,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 </script>
 ```
 
-** Usuário realizou uma compra **
+**Usuário realizou uma compra**
 
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
