@@ -162,6 +162,8 @@ no painel do Convertpack, senão estaremos enviando os dados duas vezes.
 
 - `add_to_cart`
 - `initiate_checkout`
+- `update_personal_info`
+- `complete_personal_info`
 - `purchase`
 
 Todos os eventos retornam dados (`data`), que incluem:
@@ -205,6 +207,55 @@ cart: [
     }
 ]
 ```
+
+#### update_personal_info
+
+Disparado quando o usuário insere ou atualiza alguma informação pessoal (nome,
+telefone, e-mail ou documento).
+
+É disparado **todas as vezes** que o usuário atualizar alguma informação.
+
+Retorna dados adicionais:
+
+- `customer` _Array:_ dados do cliente
+
+```javascript
+customer: [
+    {
+        name: 'Sérgio Mello',
+        email: 'cliente@dominio.com',
+        phone: '48999999999',
+        document: {
+            type: 'CPF',
+            number: '00000000000'
+        },
+    }
+]
+```
+
+#### complete_personal_info
+
+Disparado quando o usuário insere todas as suas informaÕeso pessoais
+(nome, telefone, e-mail ou documento). É disparado **uma única vez.**
+
+Retorna dados adicionais:
+
+- `customer` _Array:_ dados do cliente
+
+```javascript
+customer: [
+    {
+        name: 'Sérgio Mello',
+        email: 'cliente@dominio.com',
+        phone: '48999999999',
+        document: {
+            type: 'CPF',
+            number: '00000000000'
+        },
+    }
+]
+```
+
 
 #### purchase
 
