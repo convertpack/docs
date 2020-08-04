@@ -224,7 +224,10 @@ customer: [
     {
         name: 'Sérgio Mello',
         email: 'cliente@dominio.com',
-        phone: '48999999999',
+        phone: {
+            ddi: '55',
+            number: '48999999999'
+        },
         document: {
             type: 'CPF',
             number: '00000000000'
@@ -247,7 +250,10 @@ customer: [
     {
         name: 'Sérgio Mello',
         email: 'cliente@dominio.com',
-        phone: '48999999999',
+        phone: {
+            ddi: '55',
+            number: '48999999999'
+        },
         document: {
             type: 'CPF',
             number: '00000000000'
