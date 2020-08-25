@@ -1,6 +1,7 @@
 - [Introdução](/)
 - [Checkout](checkout)
 - [Events (API)](events)
+- [Webhooks](webhooks)
 
 
 <br/>
