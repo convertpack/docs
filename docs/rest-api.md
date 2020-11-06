@@ -113,7 +113,7 @@ Por padrão as transações mais recentes são exibidas primeiro.
 
 ### Resposta esperada
 ```
-curl "https://api.convertpack.io/v1/checkout/transactions/fetch_all?page=1&per_page=30&status=paid%2Brejected%2Bwaiting&date_start=2020-10-01&date_end=2020-10-30" \
+curl "https://api.convertpack.io/v1/checkout/transactions/fetch_all?page=1&per_page=30&status=paid+rejected+waiting&date_start=2020-10-01&date_end=2020-10-30" \
      -H 'Authorization: Bearer userkey_secret_1A2B3C4D5E6F7G8H9IV3MVX0XY1GY5' \
 ```
 
