@@ -6,6 +6,8 @@ O Convertpack oferece uma REST API (experimental) que permite:
   - Consulta de produtos
   - Consulta de transações
   
+O endpoint base é: `https://api.convertpack.io/v1/`
+
 # Autenticação
 
 Todas as consultas devem enviar a chave do usuário como forma de autenticação.
