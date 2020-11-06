@@ -1,7 +1,16 @@
 - [Introdução](/)
+
+<br/>
+
+- **Manuais**
 - [Checkout](checkout)
-- [Events (API)](events)
 - [Webhooks](webhooks)
+
+<br/>
+
+- **APIs**
+- [Rest API](rest-api)
+- [Events (Javascript)](events)
 
 <br/>
 
