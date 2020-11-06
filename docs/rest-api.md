@@ -34,6 +34,14 @@ Requisições feitas sem a chave de usuário no cabeçalho irão falhar com erro
 https://api.convertpack.io/v1/checkout/products/fetch_all
 ```
 
+Argumentos permitidos (parâmetros de URL):
+
+- `page`: número da página
+  - Padrão: `1`
+- `per_page`: número de resultados por página
+  - Padrão: `15`
+  - Máximo: `200`
+
 ### Resposta esperada
 ```
 curl "https://api.convertpack.io/v1/checkout/products/fetch_all" \
@@ -86,6 +94,7 @@ Argumentos permitidos (parâmetros de URL):
   - Padrão: `1`
 - `per_page`: número de resultados por página
   - Padrão: `15`
+  - Máximo: `200`
 - `status`: status das transações que devem ser retornadas
   - Padrão: todos exceto `abandoned`
   - Permitidos: `paid` `waiting` `rejected` `abandoned` `refunded` `cancelled` `mediation` `chargeback`
@@ -96,6 +105,9 @@ Argumentos permitidos (parâmetros de URL):
 - `date_end`: data final da consulta
   - Padrão: dia atual
   - Formato: `YYYY-MM-DD` (ex: `2020-10-20`)
+- `paid_date`: considerar data de pagamento ao invés de criação da transação _(EM BREVE)_
+  - Padrão: `false`
+  - Se esse parâmetro for determinado como `true`, o parâmetro `status` deve obrigatóriamente ser `paid`
 
 Por padrão as transações mais recentes são exibidas primeiro.
 
