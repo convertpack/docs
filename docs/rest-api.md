@@ -71,7 +71,7 @@ Argumentos permitidos como parâmetros de URL:
 
 Cada produto será um objeto na Array `products`.
 
-### Visualizar produtoo
+### Visualizar produto
 ```
 GET https://api.convertpack.io/v1/checkout/products/fetch/{id}
 ```
