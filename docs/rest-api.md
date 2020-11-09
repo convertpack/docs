@@ -26,32 +26,87 @@ curl "https://api.convertpack.io/v1/checkout/products/fetch_all" \
 Requisições feitas sem a chave de usuário no cabeçalho irão falhar com erro 401.
 
 # Checkout
-## Listar produtos
+## Produtos
 
-### Requisição
-`GET`:
+O objeto `product`:
 ```
-https://api.convertpack.io/v1/checkout/products/fetch_all
+{
+   "id": "RMG3KWL",
+   "name": "Mochila do Convertpack",
+   "image": {
+     "1x": {
+       "width": 200,
+       "height": 200,
+       "url": "https://convertpack-user-data.s3.amazonaws.com/uploads/5ee12b8782f7ba09f728febf/20-07/RMG3KWL_1x.png"
+     },
+     "2x": {
+       "width": 400,
+       "height": 400,
+       "url": "https://convertpack-user-data.s3.amazonaws.com/uploads/5ee12b8782f7ba09f728febf/20-07/RMG3KWL_2x.png"
+     }
+   },
+   "price": {
+     "currency": "BRL",
+     "value": 29.9
+   },
+   "type": "physical",
+   "created_at": "2020-10-01T12:09:45-03:00",
+   "updated_at": "2020-10-02T00:33:37-03:00"
+}
 ```
 
-Argumentos permitidos (parâmetros de URL):
+### Listar produtos
+```
+GET https://api.convertpack.io/v1/checkout/products/fetch_all
+```
 
+Argumentos permitidos como parâmetros de URL:
+
+**Paginação**
 - `page`: número da página
   - Padrão: `1`
 - `per_page`: número de resultados por página
   - Padrão: `15`
   - Máximo: `200`
 
-### Resposta esperada
+Cada produto será um objeto na Array `products`.
+
+### Visualizar produtoo
 ```
-curl "https://api.convertpack.io/v1/checkout/products/fetch_all" \
-     -H 'Authorization: Bearer userkey_secret_1A2B3C4D5E6F7G8H9IV3MVX0XY1GY5'
+GET https://api.convertpack.io/v1/checkout/products/fetch/{id}
 ```
 
-Cada produto será um objeto na Array `products`:
+## Transações
+
+O objeto `transaction`:
 
 ```
 {
+  "id": "CPK-201234567890",
+  "created_at": "2020-11-01T18:49:26-02:00",
+  "updated_at": "2020-11-02T10:01:35-02:00",
+  "customer": {
+    "first_name": "João",
+    "last_name": "Silva",
+    "document": {
+      "type": "CPF",
+      "number": "12345678900"
+    },
+    "email": "joao@gmail.com",
+    "phone": {
+      "ddi": "55",
+      "number": "991919191"
+    }
+  },
+  "payment": {
+    "status": "paid",
+    "method": "credit_card",
+    "currency": "BRL",
+    "total_amount": 29.9,
+    "net_amount": 27.45,
+    "installments": 1,
+    "paid_at": "2020-11-01T18:51:12-02:00"
+  },
   "products": [
     {
       "id": "RMG3KWL",
@@ -70,132 +125,76 @@ Cada produto será um objeto na Array `products`:
       },
       "price": {
         "currency": "BRL",
-        "value": 29.90
+        "value": 29.9
       },
       "type": "physical",
       "created_at": "2020-10-01T12:09:45-03:00",
-      "updated_at": "2020-10-02T00:33:37-03:00"
+      "updated_at": "2020-10-02T00:33:37-03:00",
+      "unities": "1",
+      "is_order_bump": false,
+      "discount": 0,
+      "discounted": 0,
+      "reference": null,
+      "charged_amount": {
+        "currency": "BRL",
+        "amount": 29.9
+      }
     }
-  ]
+  ],
+  "shipping": {
+    "amount": 0,
+  },
+  "gateway": {
+    "account": "convertpack@convertpack.com",
+    "name": "mercado_pago",
+    "id": "12345678910111213",
+    "fee": 2.44
+  },
+  "gateway_response": {
+    "payment_id": "123456789",
+    "status_detail": "accredited"
+  }
 }
 ```
 
-## Listar transações
-
-### Requisição
-`GET`:
+### Listar transações
 ```
-https://api.convertpack.io/v1/checkout/transactions/fetch_all
+GET https://api.convertpack.io/v1/checkout/transactions/fetch_all
 ```
 
-Argumentos permitidos (parâmetros de URL):
+Argumentos permitidos como parâmetros de URL:
 
+**Paginação**
 - `page`: número da página
   - Padrão: `1`
 - `per_page`: número de resultados por página
   - Padrão: `15`
   - Máximo: `200`
+
+**Status**
 - `status`: status das transações que devem ser retornadas
-  - Padrão: todos exceto `abandoned`
+  - Padrão: todos
   - Permitidos: `paid` `waiting` `rejected` `abandoned` `refunded` `cancelled` `mediation` `chargeback`
-  - Para trazer mais de um status ao mesmo tempo, use `+` entre cada status, ex: `&status=rejected+abandoned`
+  - Para trazer mais de um status na mesma requisição, use `+` entre cada status, ex: `status=rejected+abandoned`
+
+**Período**
 - `date_start`: data inicial da consulta
   - Obrigatório
   - Formato: `YYYY-MM-DD` (ex: `2020-10-15`)
 - `date_end`: data final da consulta
   - Padrão: dia atual
   - Formato: `YYYY-MM-DD` (ex: `2020-10-20`)
-- `paid_date`: considerar data de pagamento ao invés de criação da transação _(EM BREVE)_
+
+**Data de pagamento**
+- `paid_date`: considerar data de pagamento ao invés de criação da transação
   - Padrão: `false`
   - Se esse parâmetro for determinado como `true`, o parâmetro `status` deve obrigatóriamente ser `paid`
 
 Por padrão as transações mais recentes são exibidas primeiro.
 
-### Resposta esperada
-```
-curl "https://api.convertpack.io/v1/checkout/transactions/fetch_all?page=1&per_page=30&status=paid+rejected+waiting&date_start=2020-10-01&date_end=2020-10-30" \
-     -H 'Authorization: Bearer userkey_secret_1A2B3C4D5E6F7G8H9IV3MVX0XY1GY5' \
-```
+Cada transação será um objeto na Array `transactions`.
 
-Cada transação será um objeto na Array `transactions`:
-
+### Visualizar transação
 ```
-{
-  "transactions": [
-    {
-      "_id": "5fa313d6efd6eb63102f3834",
-      "id": "CPK-201234567890",
-      "created_at": "2020-11-01T18:49:26-02:00",
-      "updated_at": "2020-11-02T10:01:35-02:00",
-      "customer": {
-        "first_name": "João",
-        "last_name": "Silva",
-        "document": {
-          "type": "CPF",
-          "number": "12345678900"
-        },
-        "email": "joao@gmail.com",
-        "phone": {
-          "ddi": "55",
-          "number": "991919191"
-        }
-      },
-      "payment": {
-        "status": "paid",
-        "method": "credit_card",
-        "currency": "BRL",
-        "total_amount": 29.9,
-        "net_amount": 27.45,
-        "installments": 1,
-        "paid_at": "2020-11-01T18:51:12-02:00"
-      },
-      "products": [
-        {
-          "id": "RMG3KWL",
-          "name": "Mochila do Convertpack",
-          "image": {
-            "1x": {
-              "width": 200,
-              "height": 200,
-              "url": "https://convertpack-user-data.s3.amazonaws.com/uploads/5ee12b8782f7ba09f728febf/20-07/RMG3KWL_1x.png"
-            },
-            "2x": {
-              "width": 400,
-              "height": 400,
-              "url": "https://convertpack-user-data.s3.amazonaws.com/uploads/5ee12b8782f7ba09f728febf/20-07/RMG3KWL_2x.png"
-            }
-          },
-          "price": {
-            "currency": "BRL",
-            "value": 29.9
-          },
-          "type": "physical",
-          "created_at": "2020-10-01T12:09:45-03:00",
-          "updated_at": "2020-10-02T00:33:37-03:00",
-          "unities": "1",
-          "is_order_bump": false,
-          "discount": 0,
-          "discounted": 0,
-          "reference": null,
-          "charged_amount": {
-            "currency": "BRL",
-            "amount": 29.9
-          }
-        }
-      ],
-      "shipping": {
-        "amount": 0,
-      },
-      "gateway": {
-        "account": "convertpack@convertpack.com",
-        "name": "mercado_pago",
-        "id": "12345678910111213",
-        "fee": 2.44
-      },
-      "gateway_response": {
-        "payment_id": "123456789",
-        "status_detail": "accredited"
-      }
-    },
-(...)
+GET https://api.convertpack.io/v1/checkout/transactions/fetch/{id}
 ```
