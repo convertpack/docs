@@ -18,7 +18,7 @@ Nessa fase experimental é necessário solicitar ao [suporte do Convertpack](mai
 
 A autenticação deve ser feita pelo método Bearer no cabeçalho da requisição.
 
-```
+```shell script
 curl "https://api.convertpack.io/v1/checkout/products/fetch_all" \
      -H 'Authorization: Bearer userkey_secret_1A2B3C4D5E6F7G8H9IV3MVX0XY1GY5' \
 ```
@@ -29,7 +29,8 @@ Requisições feitas sem a chave de usuário no cabeçalho irão falhar com erro
 ## Produtos
 
 O objeto `product`:
-```
+
+```json
 {
    "id": "RMG3KWL",
    "name": "Mochila do Convertpack",
@@ -56,7 +57,8 @@ O objeto `product`:
 ```
 
 ### Listar produtos
-```
+
+```shell script
 GET https://api.convertpack.io/v1/checkout/products/fetch_all
 ```
 
@@ -72,7 +74,8 @@ Argumentos permitidos como parâmetros de URL:
 Cada produto será um objeto na Array `products`.
 
 ### Visualizar produto
-```
+
+```shell script
 GET https://api.convertpack.io/v1/checkout/products/fetch/{id}
 ```
 
@@ -80,7 +83,7 @@ GET https://api.convertpack.io/v1/checkout/products/fetch/{id}
 
 O objeto `transaction`:
 
-```
+```json
 {
   "id": "CPK-201234567890",
   "created_at": "2020-11-01T18:49:26-02:00",
@@ -158,7 +161,8 @@ O objeto `transaction`:
 ```
 
 ### Listar transações
-```
+
+```shell script
 GET https://api.convertpack.io/v1/checkout/transactions/fetch_all
 ```
 
@@ -195,6 +199,7 @@ Por padrão as transações mais recentes são exibidas primeiro.
 Cada transação será um objeto na Array `transactions`.
 
 ### Visualizar transação
-```
+
+```shell script
 GET https://api.convertpack.io/v1/checkout/transactions/fetch/{id}
 ```

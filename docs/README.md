@@ -2,12 +2,9 @@
 
 O Convertpack é uma plataforma de ferramentas de marketing – e essa é nossa documentação oficial.
 
-Nossa API ainda está em desenvolvimento e estamos abertos a sugestões para melhora-la. Se você precisa de algo que (ainda) não oferecemos, sinta-se à vontade para solicitar.
+Nossa API ainda está em desenvolvimento e estamos abertos a sugestões para melhorá-la. Se você precisa de algo que (ainda) não oferecemos, sinta-se à vontade para solicitar.
 
 Em caso de dúvidas, sugestões ou pedidos, envie um e-mail para nosso suporte de desenvolvimento: [dev.support@convertpack.io](mailto:dev.support@convertpack.io)
-
-### 🛠 Documentação das ferramentas {docsify-ignore}
-→ [Checkout](/checkout)
 
 ### 🟢 Status do serviço {docsify-ignore}
 
