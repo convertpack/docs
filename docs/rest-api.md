@@ -18,7 +18,7 @@ Nessa fase experimental é necessário solicitar ao [suporte do Convertpack](mai
 
 A autenticação deve ser feita pelo método Bearer no cabeçalho da requisição.
 
-```shell script
+```
 curl "https://api.convertpack.io/v1/checkout/products/fetch_all" \
      -H 'Authorization: Bearer userkey_secret_1A2B3C4D5E6F7G8H9IV3MVX0XY1GY5' \
 ```
@@ -75,7 +75,7 @@ Cada produto será um objeto na Array `products`.
 
 ### Visualizar produto
 
-```shell script
+```
 GET https://api.convertpack.io/v1/checkout/products/fetch/{id}
 ```
 
@@ -162,7 +162,7 @@ O objeto `transaction`:
 
 ### Listar transações
 
-```shell script
+```
 GET https://api.convertpack.io/v1/checkout/transactions/fetch_all
 ```
 
@@ -200,6 +200,6 @@ Cada transação será um objeto na Array `transactions`.
 
 ### Visualizar transação
 
-```shell script
+```
 GET https://api.convertpack.io/v1/checkout/transactions/fetch/{id}
 ```
