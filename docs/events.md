@@ -37,7 +37,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 <script>
     convertpack_events.on('checkout', 'add_to_cart', (data) => {
         console.log('Usuário adicionou produto ao carrinho.')
-        console.table(data)
+        console.log(data)
     })
 </script>
 ```
@@ -49,7 +49,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 <script>
     convertpack_events.on('checkout', 'initiate_checkout', (data) => {
         console.log('Usuário iniciou a compra.')
-        console.table(data)
+        console.log(data)
     })
 </script>
 ```
@@ -61,7 +61,7 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 <script>
     convertpack_events.on('checkout', 'purchase', (data) => {
         console.log('Usuário finalizou a compra.')
-        console.table(data)
+        console.log(data)
     })
 </script>
 ```
@@ -178,34 +178,25 @@ Além disso, cada evento também fornece dados adicionais sobre si. Vej abaixo.
 
 Disparado quando o usuário adiciona um ou mais produtos ao carrinho.
 
-Retorna dados adicionais:
-
-- `cart` _Array:_ produtos no carrinho. Cada item da _Array_ é um objeto
-
-```javascript
-cart: [
-    {
-        short_id: "1YAJp53",
-        quantity: "1"
-    }
-]
-```
-
 #### initiate_checkout
 
 Disparado quando o usuário inicia o formulário de pagamento.
 
 Retorna dados adicionais:
 
-- `cart` _Array:_ produtos no carrinho. Cada item da _Array_ é um objeto
+- `cart` _Object:_ produtos no carrinho. Cada item da _Array_ é um objeto
 
 ```javascript
-cart: [
-    {
-        short_id: "1YAJp53",
-        quantity: "1"
-    }
-]
+cart: {
+    currency: "BRL",
+    amount: 29.9,
+    products: [
+        {
+            short_id: "1YAJp53",
+            quantity: "1"
+        }
+    ]
+}
 ```
 
 #### update_personal_info
@@ -217,23 +208,21 @@ telefone, e-mail ou documento).
 
 Retorna dados adicionais:
 
-- `customer` _Array:_ dados do cliente
+- `customer` _Object:_ dados do cliente
 
 ```javascript
-customer: [
-    {
-        name: 'Sérgio Mello',
-        email: 'cliente@dominio.com',
-        phone: {
-            ddi: '55',
-            number: '48999999999'
-        },
-        document: {
-            type: 'CPF',
-            number: '00000000000'
-        },
-    }
-]
+customer: {
+    name: 'Sérgio Mello',
+    email: 'cliente@dominio.com',
+    phone: {
+        ddi: '55',
+        number: '48999999999'
+    },
+    document: {
+        type: 'CPF',
+        number: '00000000000'
+    },
+}
 ```
 
 #### complete_personal_info
@@ -243,23 +232,21 @@ Disparado quando o usuário insere todas as suas informaÕeso pessoais
 
 Retorna dados adicionais:
 
-- `customer` _Array:_ dados do cliente
+- `customer` _Object:_ dados do cliente
 
 ```javascript
-customer: [
-    {
-        name: 'Sérgio Mello',
-        email: 'cliente@dominio.com',
-        phone: {
-            ddi: '55',
-            number: '48999999999'
-        },
-        document: {
-            type: 'CPF',
-            number: '00000000000'
-        },
-    }
-]
+customer: {
+    name: 'Sérgio Mello',
+    email: 'cliente@dominio.com',
+    phone: {
+        ddi: '55',
+        number: '48999999999'
+    },
+    document: {
+        type: 'CPF',
+        number: '00000000000'
+    },
+}
 ```
 
 
@@ -277,7 +264,7 @@ transaction: {
     id: "CPK-12345678",
     status: "paid",
     method: "credit_card",
-    total_amount: 10.00,
+    total_amount: 10,
     currency: "BRL",
     products: [
         {
