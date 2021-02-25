@@ -98,7 +98,18 @@ O objeto `transaction`:
     "email": "joao@gmail.com",
     "phone": {
       "ddi": "55",
-      "number": "991919191"
+      "number": "48991920000"
+    }
+    "address": {
+      "street_name": null,
+      "street_number": null,
+      "complement": null,
+      "neighborhood": null,
+      "city": "Florianópolis",
+      "federal_unit": null,
+      "zip_code": null,
+      "country": "Brazil",
+      "country_code": "BR"
     }
   },
   "payment": {
@@ -110,9 +121,28 @@ O objeto `transaction`:
     "installments": 1,
     "paid_at": "2020-11-01T18:51:12-02:00"
   },
+  "shipping": {
+    "amount": 0,
+    "method": "free"
+  },
+  "gateway": {
+    "account": "support@convertpack.io",
+    "name": "mercado_pago",
+    "fee": 2.45,
+    "charge_id": "123456789"
+  },
+  "discounts": {
+    "amount": 0,
+    "items": []
+  },
+  "installments": {
+    "quantity": 1,
+    "fee": 0,
+    "rate_percent": 0
+  },
   "products": [
     {
-      "id": "RMG3KWL",
+      "id": "PE1L7L8L1V6",
       "name": "Mochila do Convertpack",
       "image": {
         "1x": {
@@ -135,28 +165,13 @@ O objeto `transaction`:
       "updated_at": "2020-10-02T00:33:37-03:00",
       "unities": "1",
       "is_order_bump": false,
-      "discount": 0,
-      "discounted": 0,
-      "reference": null,
+      "is_order_bump_of": null,
       "charged_amount": {
         "currency": "BRL",
         "amount": 29.9
       }
     }
   ],
-  "shipping": {
-    "amount": 0,
-  },
-  "gateway": {
-    "account": "convertpack@convertpack.com",
-    "name": "mercado_pago",
-    "id": "12345678910111213",
-    "fee": 2.44
-  },
-  "gateway_response": {
-    "payment_id": "123456789",
-    "status_detail": "accredited"
-  }
 }
 ```
 
@@ -194,7 +209,9 @@ Argumentos permitidos como parâmetros de URL:
   - Padrão: `false`
   - Se esse parâmetro for determinado como `true`, o parâmetro `status` deve obrigatóriamente ser `paid`
 
-Por padrão as transações mais recentes são exibidas primeiro.
+**Ordenação**
+- `order`: aceita `ASC` ou `DESC`
+  - Por padrão as transações mais recentes são exibidas primeiro.
 
 Cada transação será um objeto na Array `transactions`.
 
