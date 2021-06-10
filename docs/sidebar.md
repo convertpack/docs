@@ -3,13 +3,17 @@
 <br/>
 
 - **Manuais**
-- [Checkout](checkout)
 - [Webhooks](webhooks)
 
 <br/>
 
-- **APIs**
+- **API**
 - [Rest API](rest-api)
+
+<br/>
+
+- **Depreciado**
+- [Checkout](checkout)
 - [Events (Javascript)](events)
 
 <br/>

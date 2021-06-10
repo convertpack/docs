@@ -1,5 +1,7 @@
 # Events (API)
 
+**Esse manual se encontra DEPRECIADO.** A partir de 20 de junho de 2021 as opções descritas não estarão disponíveis.
+
 O Convertpack oferece uma API de eventos Javascript, permitindo que você capture dados
 a medida que os eventos aconteçam ou execute suas próprias funções quando o usuário
 realizar determinadas ações.
@@ -25,20 +27,19 @@ Para isso, usaremos a função `convertpack_events.on()`, que precisa de 3 argum
 Por enquanto somente a ferramenta **Checkout** dispara eventos. Veja abaixo exemplos
 reais de uso.
 
-
 ### Checkout
 
 Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 
-**Usuário adicionou produto ao carrinho** 
+**Usuário adicionou produto ao carrinho**
 
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
-    convertpack_events.on('checkout', 'add_to_cart', (data) => {
-        console.log('Usuário adicionou produto ao carrinho.')
-        console.log(data)
-    })
+  convertpack_events.on("checkout", "add_to_cart", (data) => {
+    console.log("Usuário adicionou produto ao carrinho.");
+    console.log(data);
+  });
 </script>
 ```
 
@@ -47,10 +48,10 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
-    convertpack_events.on('checkout', 'initiate_checkout', (data) => {
-        console.log('Usuário iniciou a compra.')
-        console.log(data)
-    })
+  convertpack_events.on("checkout", "initiate_checkout", (data) => {
+    console.log("Usuário iniciou a compra.");
+    console.log(data);
+  });
 </script>
 ```
 
@@ -59,10 +60,10 @@ Abaixo alguns exemplos práticos de como o código deve ficar em sua página.
 ```html
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
-    convertpack_events.on('checkout', 'purchase', (data) => {
-        console.log('Usuário finalizou a compra.')
-        console.log(data)
-    })
+  convertpack_events.on("checkout", "purchase", (data) => {
+    console.log("Usuário finalizou a compra.");
+    console.log(data);
+  });
 </script>
 ```
 
@@ -73,7 +74,7 @@ Veja abaixo algumas delas.
 
 ### Disparar Facebook Pixel e Google Analytics
 
-Você pode disparar o Facebook Pixel, Google Analytics ou qualquer outro _tracker_ 
+Você pode disparar o Facebook Pixel, Google Analytics ou qualquer outro _tracker_
 pelo Convertpack Events.
 
 !> Se você disparar Facebook Pixel e/ou Google Analytics pelo Convertpack Events, lembre-se de **remover** seu Pixel ID ou Google Analytics ID do painel do Convertpack, senão os dados de compra serão enviados **duas vezes** – uma pelo código do Convertpack Events e outra vez pelo Checkout.
@@ -87,35 +88,32 @@ Exemplo para compra realizada:
 -->
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
-    convertpack_events.on('checkout', 'purchase', (data) => {
-        
-        // Valor total da compra
-        let purchase_amount = data.transaction.total_amount;
+  convertpack_events.on("checkout", "purchase", (data) => {
+    // Valor total da compra
+    let purchase_amount = data.transaction.total_amount;
 
-        // Facebook Pixel
-        fbq("track", "Purchase", {
-            value: purchase_amount,
-            currency: data.transaction.currency,
-            content_type: "product"
-        });
+    // Facebook Pixel
+    fbq("track", "Purchase", {
+      value: purchase_amount,
+      currency: data.transaction.currency,
+      content_type: "product",
+    });
 
-        // Google Analytics
-        gtag("event", "purchase", {
-            transaction_id: data.transaction.id,
-            value: purchase_amount,
-            currency: data.transaction.currency,
-            items: data.transaction.products,
-            shipping: data.shipping.amount
-        });
-
-    })
+    // Google Analytics
+    gtag("event", "purchase", {
+      transaction_id: data.transaction.id,
+      value: purchase_amount,
+      currency: data.transaction.currency,
+      items: data.transaction.products,
+      shipping: data.shipping.amount,
+    });
+  });
 </script>
 ```
 
-
 ### Enviar preço diferente se método de pagamento for boleto
 
-Novamente, lembre-se de **remover** os dados do Facebook Pixel e Google Analytics 
+Novamente, lembre-se de **remover** os dados do Facebook Pixel e Google Analytics
 no painel do Convertpack, senão estaremos enviando os dados duas vezes.
 
 ```html
@@ -125,34 +123,32 @@ no painel do Convertpack, senão estaremos enviando os dados duas vezes.
 -->
 <script src="https://client.convertpack.io/js/events.js"></script>
 <script>
-    convertpack_events.on('checkout', 'purchase', (data) => {
-        
-        // Valor total da compra
-        let purchase_amount = data.transaction.total_amount;
+  convertpack_events.on("checkout", "purchase", (data) => {
+    // Valor total da compra
+    let purchase_amount = data.transaction.total_amount;
 
-        // Se o método de pagamento for boleto,
-        // envia para Facebook e Google Analytics somente 40% do valor total
-        if (data.transaction.method === "boleto") {
-            purchase_amount = data.transaction.total_amount * 0.4;
-        }
+    // Se o método de pagamento for boleto,
+    // envia para Facebook e Google Analytics somente 40% do valor total
+    if (data.transaction.method === "boleto") {
+      purchase_amount = data.transaction.total_amount * 0.4;
+    }
 
-        // Facebook Pixel
-        fbq("track", "Purchase", {
-            value: purchase_amount,
-            currency: data.transaction.currency,
-            content_type: "product"
-        });
+    // Facebook Pixel
+    fbq("track", "Purchase", {
+      value: purchase_amount,
+      currency: data.transaction.currency,
+      content_type: "product",
+    });
 
-        // Google Analytics
-        gtag("event", "purchase", {
-            transaction_id: data.transaction.id,
-            value: purchase_amount,
-            currency: data.transaction.currency,
-            items: data.transaction.products,
-            shipping: data.shipping.amount
-        });
-
-    })
+    // Google Analytics
+    gtag("event", "purchase", {
+      transaction_id: data.transaction.id,
+      value: purchase_amount,
+      currency: data.transaction.currency,
+      items: data.transaction.products,
+      shipping: data.shipping.amount,
+    });
+  });
 </script>
 ```
 
@@ -248,7 +244,6 @@ customer: {
     },
 }
 ```
-
 
 #### purchase
 
