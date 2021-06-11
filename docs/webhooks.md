@@ -16,60 +16,60 @@ Você pode conferir um exemplo de captura do Webhook do Convertpack [no reposit�
 
 ## Dados enviados
 
-- `event` (String) Evento que desencadeou o webhook
-- `triggered_at` (String) Data em que o webhook foi enviado, formato ISO 8601
-- `checkout` (Object) Dados do Checkout
-  - `origin` (Object) Dados da origem da venda
-    - `url` (String) URL onde a compra foi realizada
-    - `params` (Object) Parâmetros presentes na URL de compra, se disponíveis, em formato `key`: `value` (exemplo: `"utm_source": "google"`)
-- `customer` (Object) Dados do comprador
-  - `first_name` (String) Primeiro nome
-  - `last_name` (String) Último nome
-  - `email` (String) E-mail
-  - `document` (Object) Documento de identificação
-    - `type` (String) Tipo do documento (exemplo: `CPF` ou `CNPJ`)
-    - `number` (String) Número do documento, somente números
-  - `phone` (Object) Telefone
-    - `ddi` (String) DDI do telefone
-    - `number` (String) Número do telefone, somente números
-  - `address` (Object) Endereço do comprador, se disponível
-    - `destination_format` (Object) Endereço no formato mais aceito no país de destino
-      - `city` (String) Cidade
-      - `complement` (String) Complemento do endereço
-      - `country` (String) País
-      - `country_code` (String) Código do país (alpha-2)
-      - `district` (String) Bairro
-      - `federal_unit` (String) UF/estado
-      - `street_name` (String) Rua
-      - `street_number` (String) Número
-      - `zip_code` (String) CEP (somente números)
-    - `international_format` (Object) Endereço no formato internacional
-      - `city` (String) Cidade
-      - `address_1` (String) Primeira linha do endereço
-      - `address_2` (String) Segunda linha do endereço
-      - `country_code` (String) Código do país (alpha-2)
-      - `state` (String) Bairro
-      - `zip_code` (String) CEP, somente números
-- `transaction` (Object) Dados da transação
-  - `created_at` (String) Data de criação da transação, formato ISO 8601
-  - `updated_at` (String) Data da última atualização, formato ISO 8601
-  - `id` (String) ID da transação (exemplo: `CPK-2112345678`)
-  - `status` (String) Status do pagamento, abaixo todos status possíveis
-  - `method` (String) Método de pagamento, abaixo todos status possíveis
-  - `currency` (String) Moeda de pagamento (alpha-3, exemplo: `BRL`)
-  - `products` (Array) Produtos comprados
+- `event` _(String)_ Evento que desencadeou o webhook
+- `triggered_at` _(String)_ Data em que o webhook foi enviado, formato ISO 8601
+- `checkout` _(Object)_ Dados do Checkout
+  - `origin` _(Object)_ Dados da origem da venda
+    - `url` _(String)_ URL onde a compra foi realizada
+    - `params` _(Object)_ Parâmetros presentes na URL de compra, se disponíveis, em formato `key`: `value` (exemplo: `"utm_source": "google"`)
+- `customer` _(Object)_ Dados do comprador
+  - `first_name` _(String)_ Primeiro nome
+  - `last_name` _(String)_ Último nome
+  - `email` _(String)_ E-mail
+  - `document` _(Object)_ Documento de identificação
+    - `type` _(String)_ Tipo do documento (exemplo: `CPF` ou `CNPJ`)
+    - `number` _(String)_ Número do documento, somente números
+  - `phone` _(Object)_ Telefone
+    - `ddi` _(String)_ DDI do telefone
+    - `number` _(String)_ Número do telefone, somente números
+  - `address` _(Object)_ Endereço do comprador, se disponível
+    - `destination_format` _(Object)_ Endereço no formato mais aceito no país de destino
+      - `city` _(String)_ Cidade
+      - `complement` _(String)_ Complemento do endereço
+      - `country` _(String)_ País
+      - `country_code` _(String)_ Código do país (alpha-2)
+      - `district` _(String)_ Bairro
+      - `federal_unit` _(String)_ UF/estado
+      - `street_name` _(String)_ Rua
+      - `street_number` _(String)_ Número
+      - `zip_code` _(String)_ CEP, somente números
+    - `international_format` _(Object)_ Endereço no formato internacional
+      - `city` _(String)_ Cidade
+      - `address_1` _(String)_ Primeira linha do endereço
+      - `address_2` _(String)_ Segunda linha do endereço
+      - `country_code` _(String)_ Código do país (alpha-2)
+      - `state` _(String)_ Bairro
+      - `zip_code` _(String)_ CEP, somente números
+- `transaction` _(Object)_ Dados da transação
+  - `created_at` _(String)_ Data de criação da transação, formato ISO 8601
+  - `updated_at` _(String)_ Data da última atualização, formato ISO 8601
+  - `id` _(String)_ ID da transação (exemplo: `CPK-2112345678`)
+  - `status` _(String)_ Status do pagamento, abaixo todos status possíveis
+  - `method` _(String)_ Método de pagamento, abaixo todos status possíveis
+  - `currency` _(String)_ Moeda de pagamento (alpha-3, exemplo: `BRL`)
+  - `products` _(Array)_ Produtos comprados
     - []
-      - `id` (String) ID do produto
-      - `name` (String) Nome do produto
-      - `quantity` (Int) Unidades compradas
-      - `type` (string) Tipo do produto (`physical` ou `digital`)
-      - `unit_price` (string) Preço unitário do produto (exemplo: `"25.00"`)
-      - `sku` (string) SKU, se disponível
-      - `is_upsell` (Bool) Se o produto foi comprado como Upsell
-      - `is_order_bump` (Bool) Se o produto foi comprado como Order bump
-  - `boleto` (Object) Dados do boleto, caso o `method` seja `boleto`
-    - `url` (String) URL do boleto
-    - `barcode` (String) Código de barras do boleto, somente números
+      - `id` _(String)_ ID do produto
+      - `name` _(String)_ Nome do produto
+      - `quantity` _(Int)_ Unidades compradas
+      - `type` _(string)_ Tipo do produto (`physical` ou `digital`)
+      - `unit_price` _(string)_ Preço unitário do produto (exemplo: `"25.00"`)
+      - `sku` _(string)_ SKU, se disponível
+      - `is_upsell` _(Bool)_ Se o produto foi comprado como Upsell
+      - `is_order_bump` _(Bool)_ Se o produto foi comprado como Order bump
+  - `boleto` _(Object)_ Dados do boleto, caso o `method` seja `boleto`
+    - `url` _(String)_ URL do boleto
+    - `barcode` _(String)_ Código de barras do boleto, somente números
 
 ### Status de pagamento
 
