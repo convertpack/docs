@@ -106,7 +106,7 @@ Os campos abaixo estão em _alpha_ e podem mudar no futuro:
 
 Você pode enviar webhooks de teste diretamente para seu sistema pela interface do Convertpack.
 
-[Vídeo com instruções](https://github.com/convertpack/docs/blob/master/assets/videos/integrations-webhooks-test.mp4?raw=true ":include :type=video width=640px height=308px")
+[Vídeo com instruções](https://www.youtube.com/embed/IVAGXf26JBI ":include :type=iframe width=640px height=308px")
 
 1. Vá para a seção [Integrações](https://app.convertpack.io/integrations)
 2. Selecione a aba [Webhooks](https://app.convertpack.io/integrations/webhooks)
