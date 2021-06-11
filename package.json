@@ -3,6 +3,6 @@
     "dev": "docsify serve docs"
   },
   "dependencies": {
-    "docsify-cli": "^4.4.1"
+    "docsify-cli": "^4.4.3"
   }
 }
